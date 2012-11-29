@@ -1,5 +1,5 @@
 package com.weebly.acoundou.clay.common;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -11,13 +11,15 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.src.*;
-import net.minecraftforge.client.MinecraftForgeClient;
 
 @Mod(modid = "Clay", name = "Clay", version = Clay.versionNumber)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
 public class Clay
 {
-	
+	//Proxy stuffs
+	@SidedProxy(clientSide = "com.weebly.acoundou.clay.client.ClientProxy", serverSide = "com.weebly.acoundou.clay.common.CommonProxy")
+	public static CommonProxy proxy;
+
 	
 	//public static final Material BlockTNC = null;
 	public static final String versionNumber = "1.0.0";
@@ -58,7 +60,7 @@ public class Clay
 	
 	
 	//Blocks
-	public static Block blockHardener;
+	public static Block blockHardener.setCreativeTab(CreativeTabs.tabDecorations);;
 	public static Block blockHardenerOn;
 
 	public static Block blockSharpener;
@@ -102,7 +104,7 @@ public class Clay
 	public void load(FMLPreInitializationEvent event)
 	
 	{
-		
+		proxy.registerRenderInformation(); 
 		
 		//Blocks
 		blockHardener = new BlockHardener(blockHardenerID, false).setBlockName("Hardener").setCreativeTab(CreativeTabs.tabAllSearch);
@@ -113,6 +115,11 @@ public class Clay
 		
 		LanguageRegistry.addName(blockSharpener, "Sharpener");
 		GameRegistry.registerBlock(blockSharpener);
+		
+		
+		
+		
+		
 		/**GameRegistry.addRecipe(new ItemStack(blockSharpener,1), new Object[] {
 			"*",'*', Block.cobblestone
 		}); **/
@@ -126,8 +133,14 @@ public class Clay
 		
 		
 		//NetworkRegistry.instance().registerGuiHandler(this, instance);
-		MinecraftForgeClient.preloadTexture("/clay/items.png");
-		MinecraftForgeClient.preloadTexture("/clay/terrain.png");
+		
+		
+		
+		
+		
+		
+		
+		
 		LanguageRegistry.addName(itemHolster,"Grip");
 		GameRegistry.addRecipe(new ItemStack(itemHolster,2), new Object[] {
 			"^&^"," ^ ",'^',Item.stick,'&',Item.leather

@@ -1,20 +1,23 @@
-package com.weebly.acoundou.clay.common;
+package com.weebly.acoundou.clay.client;
 import net.minecraft.src.*;
 
 import org.lwjgl.opengl.GL11;
 
-public class GuiSharpener extends GuiContainer {
+import com.weebly.acoundou.clay.common.ContainerHardener;
+import com.weebly.acoundou.clay.common.TileEntityHardener;
+
+public class GuiHardener extends GuiContainer {
 	
-		private TileEntitySharpener sharpenerInventory;
-		public GuiSharpener(InventoryPlayer par1InventoryPlayer, TileEntitySharpener par2TileEntitySharpener)
+		private TileEntityHardener hardenerInventory;
+		public GuiHardener(InventoryPlayer par1InventoryPlayer, TileEntityHardener par2TileEntityHardener)
 	    {
-	        super(new ContainerSharpener(par1InventoryPlayer, par2TileEntitySharpener));
-	        this.sharpenerInventory = par2TileEntitySharpener;
+	        super(new ContainerHardener(par1InventoryPlayer, par2TileEntityHardener));
+	        this.hardenerInventory = par2TileEntityHardener;
 	    }
-        /*public GuiSharpener (InventoryPlayer inventoryPlayer,
-                        TileEntitySharpener tileEntity) {
+        /*public GuiHardener (InventoryPlayer inventoryPlayer,
+                        TileEntityHardener tileEntity) {
                 //the container is instanciated and passed to the superclass for handling
-                super(new ContainerSharpener(inventoryPlayer, tileEntity));
+                super(new ContainerHardener(inventoryPlayer, tileEntity));
         }
 */		
         @Override
@@ -37,13 +40,13 @@ public class GuiSharpener extends GuiContainer {
             this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
             int var7;
 
-            if (sharpenerInventory.isBurning())
+            if (hardenerInventory.isBurning())
             {
-                var7 = sharpenerInventory.getBurnTimeRemainingScaled(12);
+                var7 = hardenerInventory.getBurnTimeRemainingScaled(12);
                 this.drawTexturedModalRect(var5 + 56, var6 + 36 + 12 - var7, 176, 12 - var7, 14, var7 + 2);
             }
 
-            var7 = sharpenerInventory.getCookProgressScaled(24);
+            var7 = hardenerInventory.getCookProgressScaled(24);
             this.drawTexturedModalRect(var5 + 79, var6 + 34, 176, 14, var7 + 1, 16);
         }
 
