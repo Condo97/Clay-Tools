@@ -1,9 +1,11 @@
 package com.weebly.acoundou.clay.common;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
@@ -11,6 +13,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.src.*;
+import net.minecraftforge.common.Configuration;
 
 @Mod(modid = "Clay", name = "Clay", version = Clay.versionNumber)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true)
@@ -20,7 +23,7 @@ public class Clay
 	@SidedProxy(clientSide = "com.weebly.acoundou.clay.client.ClientProxy", serverSide = "com.weebly.acoundou.clay.common.CommonProxy")
 	public static CommonProxy proxy;
 
-	
+	public static Configuration configuration;
 	//public static final Material BlockTNC = null;
 	public static final String versionNumber = "1.0.0";
 	//public static Item itemClayPickaxe = new ItemClayPickaxe(ModLoader.getUniqueEntityId(), EnumClayToolMaterial.CLAY).setItemName("ClayPickaxe").setsetIconIndex(setItemTexture("ClayPickaxe"));
@@ -60,14 +63,15 @@ public class Clay
 	
 	
 	//Blocks
-	public static Block blockHardener.setCreativeTab(CreativeTabs.tabDecorations);;
+	public static Block blockHardener;
+	
 	public static Block blockHardenerOn;
 
 	public static Block blockSharpener;
 	public static Block blockSharpenerOn;
 	
 	//IDs
-	public static int blockHardenerID = 201;
+	public static int blockHardenerID = 1863;
 	public static int blockHardenerIDOn = 202;
 	
 	public static int blockSharpenerID = 203;
@@ -92,7 +96,6 @@ public class Clay
 	
 	
 	
-	
 	public static int TNCTop;
 	public static int TNCBottom;
 	public static int TNCSide;
@@ -104,10 +107,13 @@ public class Clay
 	public void load(FMLPreInitializationEvent event)
 	
 	{
+		
+		configuration = new Configuration(event.getSuggestedConfigurationFile());
+		blockHardenerID = configuration.getBlock("Hardener", 1863).getInt();
 		proxy.registerRenderInformation(); 
 		
 		//Blocks
-		blockHardener = new BlockHardener(blockHardenerID, false).setBlockName("Hardener").setCreativeTab(CreativeTabs.tabAllSearch);
+		blockHardener = new BlockHardener(blockHardenerID, false).setBlockName("Hardener").setCreativeTab(CreativeTabs.tabDecorations);
 		blockHardener = new BlockHardener(blockHardenerIDOn, true).setBlockName("HardenerOn");
 		
 		blockSharpener = new BlockSharpener(blockSharpenerID, false).setBlockName("Sharpener").setCreativeTab(CreativeTabs.tabAllSearch);
