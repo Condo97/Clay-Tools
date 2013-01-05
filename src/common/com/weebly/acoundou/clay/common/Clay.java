@@ -71,11 +71,11 @@ public class Clay
 	public static Block blockSharpenerOn;
 	
 	//IDs
-	public static int blockHardenerID = 1863;
-	public static int blockHardenerIDOn = 202;
+	public static int blockHardenerID = 9590;
+	public static int blockHardenerIDOn = 9591;
 	
-	public static int blockSharpenerID = 203;
-	public static int blockSharpenerIDOn = 204;
+	public static int blockSharpenerID = 9592;
+	public static int blockSharpenerIDOn = 9593;
 	
 	//TEXTUREN
 	//public static int GUITexture = 
@@ -109,7 +109,7 @@ public class Clay
 	{
 		
 		configuration = new Configuration(event.getSuggestedConfigurationFile());
-		blockHardenerID = configuration.getBlock("Hardener", 1863).getInt();
+		blockHardenerID = configuration.getBlock("Hardener", 9590).getInt();
 		proxy.registerRenderInformation(); 
 		
 		//Blocks
